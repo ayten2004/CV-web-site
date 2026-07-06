@@ -17,6 +17,10 @@
   --angry:#E84545; --angry-glow:rgba(232,69,69,0.22); --angry-soft:rgba(232,69,69,0.07);
   --disgust:#5DBB63; --disgust-glow:rgba(93,187,99,0.22); --disgust-soft:rgba(93,187,99,0.07);
   --fear:#9B59B6; --fear-glow:rgba(155,89,182,0.22); --fear-soft:rgba(155,89,182,0.07);
+  --anxiety:#FF8C2E; --anxiety-glow:rgba(255,140,46,0.22);
+  --envy:#2ED9A8; --envy-glow:rgba(46,217,168,0.22);
+  --embarrass:#FF6FA5; --embarrass-glow:rgba(255,111,165,0.22);
+  --ennui:#8B93A6; --ennui-glow:rgba(139,147,166,0.22);
   --bing:#FF9EBC;
   --text:#F0F4FF; --muted:rgba(240,244,255,0.62);
   --panel:rgba(255,255,255,0.055);
@@ -154,6 +158,10 @@ body {
 .emo-face.angry  { background:radial-gradient(circle at 40% 35%,#ff7878,#b81414); }
 .emo-face.disgust{ background:radial-gradient(circle at 40% 35%,#7dd87f,#2a7a2c); }
 .emo-face.fear   { background:radial-gradient(circle at 40% 35%,#c98fef,#6820a8); }
+.emo-face.anxiety   { background:radial-gradient(circle at 40% 35%,#ffb066,#e06800); }
+.emo-face.envy      { background:radial-gradient(circle at 40% 35%,#7ef2d0,#0d9e78); }
+.emo-face.embarrass { background:radial-gradient(circle at 40% 35%,#ffa8cc,#e0357f); }
+.emo-face.ennui     { background:radial-gradient(circle at 40% 35%,#b8bfd0,#5a6478); }
 
 .emo-btn.active .emo-face { box-shadow: 0 0 22px currentColor; }
 @keyframes pulse-face{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
@@ -334,6 +342,20 @@ h1 {
 .proj-card.cyber:hover { box-shadow:0 8px 40px rgba(93,187,99,.12); }
 .proj-card.ecom:hover  { box-shadow:0 8px 40px rgba(255,215,0,.1); }
 .proj-card.macro:hover { box-shadow:0 8px 40px rgba(74,144,217,.12); }
+.proj-card.esie:hover { box-shadow:0 8px 40px rgba(255,158,188,.14); }
+.proj-card.portfolio:hover { box-shadow:0 8px 40px rgba(155,89,182,.14); }
+
+.bar-esie      { background:linear-gradient(90deg,#d9477a,#FF9EBC); }
+.bar-portfolio { background:linear-gradient(90deg,#6820a8,#c98fef); }
+
+.pi-esie      { background:rgba(255,158,188,.18); border:1px solid rgba(255,158,188,.32); }
+.pi-portfolio { background:rgba(155,89,182,.18); border:1px solid rgba(155,89,182,.32); }
+
+.sc-esie      { background:rgba(255,158,188,.14); color:#ffb8d0; border:1px solid rgba(255,158,188,.28); }
+.sc-portfolio { background:rgba(155,89,182,.14); color:#c98fef; border:1px solid rgba(155,89,182,.28); }
+
+.pl-esie      { color:#FF9EBC; border-color:rgba(255,158,188,.32); }
+.pl-portfolio { color:#c98fef; border-color:rgba(155,89,182,.32); }
 
 /* Colored top bar */
 .proj-topbar {
@@ -422,6 +444,153 @@ h1 {
 .proj-lang { font-size:.73rem; color:var(--muted); display:flex; align-items:center; gap:.3rem; }
 .lang-dot { width:8px; height:8px; border-radius:50%; }
 
+/* ── PROFESSIONAL EXPERIENCE ── */
+.exp-grid { display:flex; flex-direction:column; gap:.9rem; }
+.exp-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:16px; padding:1.3rem 1.5rem;
+  display:flex; gap:1rem; align-items:flex-start;
+  position:relative; overflow:hidden;
+  transition:transform .3s, border-color .3s;
+}
+.exp-card:hover { transform:translateY(-3px); border-color:rgba(255,255,255,.22); }
+.exp-card.exp-tuik { border-left:4px solid var(--anxiety); }
+.exp-card.exp-iskur { border-left:4px solid var(--sad); }
+.exp-icon {
+  width:44px; height:44px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; flex-shrink:0;
+}
+.ei-tuik  { background:rgba(255,140,46,.16); border:1px solid rgba(255,140,46,.3); }
+.ei-iskur { background:rgba(74,144,217,.16); border:1px solid rgba(74,144,217,.3); }
+.exp-meta { flex:1; }
+.exp-role { font-family:'Nunito',sans-serif; font-size:1rem; font-weight:800; }
+.exp-org  { font-size:.82rem; color:var(--muted); font-weight:600; margin-top:.15rem; }
+.exp-date {
+  font-size:.7rem; font-weight:700; color:var(--muted);
+  background:rgba(255,255,255,.06); border-radius:6px;
+  padding:.12rem .5rem; display:inline-block; margin-top:.4rem;
+}
+.exp-desc { font-size:.85rem; color:var(--muted); line-height:1.6; margin-top:.6rem; }
+.exp-desc strong { color:var(--text); font-weight:700; }
+
+/* ── CERTIFICATES ── */
+.cert-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+.cert-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:18px; padding:1.3rem 1.4rem;
+  position:relative; overflow:hidden;
+  transition:transform .3s, border-color .3s;
+}
+.cert-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,.25); }
+.cert-card::before {
+  content:''; position:absolute; top:-24px; right:-24px;
+  width:90px; height:90px; border-radius:50%; opacity:.13;
+}
+.cert-tuik::before      { background:var(--anxiety); }
+.cert-python::before    { background:var(--envy); }
+.cert-cpp::before       { background:var(--joy); }
+.cert-diksiyon::before  { background:var(--embarrass); }
+.cert-excel::before     { background:var(--sad); }
+.cert-ai::before        { background:var(--fear); }
+.cert-camp::before      { background:var(--disgust); }
+
+.cert-top { display:flex; align-items:flex-start; gap:.8rem; margin-bottom:.75rem; }
+.cert-icon {
+  width:42px; height:42px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.25rem; flex-shrink:0;
+}
+.ci-tuik      { background:rgba(255,140,46,.16); border:1px solid rgba(255,140,46,.3); }
+.ci-python    { background:rgba(46,217,168,.16); border:1px solid rgba(46,217,168,.3); }
+.ci-cpp       { background:rgba(255,215,0,.14); border:1px solid rgba(255,215,0,.28); }
+.ci-diksiyon  { background:rgba(255,111,165,.16); border:1px solid rgba(255,111,165,.3); }
+.ci-excel     { background:rgba(74,144,217,.16); border:1px solid rgba(74,144,217,.3); }
+.ci-ai        { background:rgba(155,89,182,.16); border:1px solid rgba(155,89,182,.3); }
+.ci-camp      { background:rgba(93,187,99,.16); border:1px solid rgba(93,187,99,.3); }
+
+.cert-name { font-family:'Nunito',sans-serif; font-size:.95rem; font-weight:800; line-height:1.3; }
+.cert-org  { font-size:.74rem; color:var(--muted); font-weight:600; margin-top:.15rem; }
+.cert-date {
+  font-size:.68rem; font-weight:700; color:var(--muted);
+  background:rgba(255,255,255,.06); border-radius:6px;
+  padding:.12rem .5rem; display:inline-block; margin-top:.5rem;
+}
+.cert-detail {
+  font-size:.8rem; color:var(--muted); line-height:1.55;
+  margin-top:.65rem; padding-top:.65rem;
+  border-top:1px solid var(--border);
+}
+.cert-detail strong { color:var(--text); font-weight:700; }
+.cert-hours {
+  display:inline-flex; align-items:center; gap:.3rem;
+  margin-top:.6rem; font-size:.72rem; font-weight:700;
+}
+.ch-tuik { color:#FF8C2E; }
+.ch-python { color:#2ED9A8; }
+.ch-cpp { color:#FFD700; }
+.ch-diksiyon { color:#FF6FA5; }
+.ch-excel { color:#72b8f0; }
+.ch-ai { color:#c98fef; }
+.ch-camp { color:#7dd87f; }
+
+/* ── MOOD PANEL ── */
+.mood-panel {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.13);
+  border-radius:16px;
+  padding:.8rem 1.4rem;
+  margin-bottom:1.6rem;
+  display:flex; align-items:center; gap:.7rem;
+  max-width:420px;
+  transition: border-color .4s ease, background .4s ease;
+}
+.mood-icon { font-size:1.5rem; flex-shrink:0; }
+.mood-text {
+  font-size:.83rem; line-height:1.45;
+  color:var(--text); font-weight:600;
+  text-align:left;
+}
+
+/* ── FX LAYER ── */
+#fx-layer { position:fixed; inset:0; pointer-events:none; z-index:5; overflow:hidden; }
+.fx-item { position:absolute; will-change:transform,opacity; }
+
+@keyframes fx-confetti-fall {
+  0%{ transform:translateY(-10vh) rotate(0deg); opacity:1; }
+  100%{ transform:translateY(110vh) rotate(540deg); opacity:0; }
+}
+@keyframes fx-rain-fall {
+  0%{ transform:translateY(-10vh); opacity:.7; }
+  100%{ transform:translateY(110vh); opacity:.3; }
+}
+@keyframes fx-rise-fade {
+  0%{ transform:translateY(0) scale(.6); opacity:0; }
+  15%{ opacity:1; }
+  100%{ transform:translateY(-90vh) scale(1.1); opacity:0; }
+}
+@keyframes fx-drift-side {
+  0%{ transform:translate(0,0) rotate(0deg); opacity:0; }
+  15%{ opacity:1; }
+  100%{ transform:translate(40vw,-20vh) rotate(180deg); opacity:0; }
+}
+@keyframes fx-jitter {
+  0%,100%{ transform:translate(0,0); }
+  25%{ transform:translate(-3px,2px); }
+  50%{ transform:translate(3px,-2px); }
+  75%{ transform:translate(-2px,-3px); }
+}
+@keyframes fx-shake-screen {
+  0%,100%{ transform:translate(0,0); }
+  20%{ transform:translate(-4px,3px); }
+  40%{ transform:translate(4px,-3px); }
+  60%{ transform:translate(-3px,-2px); }
+  80%{ transform:translate(3px,2px); }
+}
+body.fx-shaking { animation: fx-shake-screen .35s ease; }
+body.fx-grayscale { filter: grayscale(0.65) brightness(0.9); transition: filter 1.5s ease; }
+body { filter: grayscale(0) brightness(1); }
+
 /* ── VOLUNTEER ── */
 .vol-card {
   background:var(--panel); border:1px solid var(--border);
@@ -453,6 +622,7 @@ h1 {
 <div id="nebula"></div>
 <div id="stars"></div>
 <div id="orbs"></div>
+<div id="fx-layer"></div>
 
 <div class="wrapper">
 
@@ -485,6 +655,30 @@ h1 {
         <div class="emo-label">Korku</div>
       </button>
     </div>
+    <div class="console-hint" style="margin-top:.5rem; opacity:.4;">✦ Diğer Duygular ✦</div>
+    <div class="emotion-row">
+      <button class="emo-btn" data-emo="anxiety" onclick="setEmo(this)">
+        <div class="emo-face anxiety" style="color:var(--anxiety)">😬</div>
+        <div class="emo-label">Kaygı</div>
+      </button>
+      <button class="emo-btn" data-emo="envy" onclick="setEmo(this)">
+        <div class="emo-face envy" style="color:var(--envy)">😳</div>
+        <div class="emo-label">Kıskançlık</div>
+      </button>
+      <button class="emo-btn" data-emo="embarrass" onclick="setEmo(this)">
+        <div class="emo-face embarrass" style="color:var(--embarrass)">🙈</div>
+        <div class="emo-label">Utanç</div>
+      </button>
+      <button class="emo-btn" data-emo="ennui" onclick="setEmo(this)">
+        <div class="emo-face ennui" style="color:var(--ennui)">😑</div>
+        <div class="emo-label">Bezginlik</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="mood-panel" id="mood-panel">
+    <div class="mood-icon" id="mood-icon">☀️</div>
+    <div class="mood-text" id="mood-text">Hava durumu getiriliyor...</div>
   </div>
 
   <div class="avatar-wrap">
@@ -498,9 +692,9 @@ h1 {
 
   <div class="contact-links">
     <a href="mailto:cansuayten.2004@gmail.com" class="c-link cl-joy">✉ E-posta</a>
-    <a href="https://linkedin.com/in/cansu-ayten-002a57299" class="c-link cl-sad" target="_blank">💼 LinkedIn</a>
-    <a href="https://github.com/ayten2004" class="c-link cl-fear" target="_blank">🐙 GitHub</a>
-    <a href="tel:05013235166" class="c-link cl-bing">📞 Ara</a>
+    <a href="https://linkedin.com/in/cansu-ayten-002a57299" class="c-link cl-sad" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+    <a href="https://github.com/ayten2004" class="c-link cl-fear" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+    <a href="https://www.kaggle.com/cansuuaytenn" class="c-link cl-joy" target="_blank" rel="noopener noreferrer">🏆 Kaggle</a>
   </div>
 
   <div class="scroll-hint">
@@ -518,7 +712,7 @@ h1 {
   <div class="orb-row">
     <div class="mem-orb o-joy">
       <div class="orb-icon">🔬</div>
-      <div class="orb-text"><strong>3. sınıf İstatistik</strong> öğrencisiyim. Python ve R kullanarak gerçek dünya veri setlerinde makine öğrenmesi projeleri geliştiriyorum.</div>
+      <div class="orb-text"><strong>4. sınıf İstatistik</strong> öğrencisiyim. Python ve R kullanarak gerçek dünya veri setlerinde makine öğrenmesi projeleri geliştiriyorum.</div>
     </div>
     <div class="mem-orb o-sad">
       <div class="orb-icon">📊</div>
@@ -570,7 +764,7 @@ h1 {
     <div class="sk-card">
       <div class="sk-title sad">🤖 Veri Bilimi</div>
       <div class="pills">
-        <span class="pill">Makine Öğrenmesi</span><span class="pill">OLS / Ridge</span>
+        <span class="pill">Makine Öğrenmesi</span><span class="pill">OLS / Ridge / Lasso</span>
         <span class="pill">ANOVA</span><span class="pill">Hipotez Testleri</span>
         <span class="pill">Zaman Serileri</span>
       </div>
@@ -580,7 +774,14 @@ h1 {
       <div class="pills">
         <span class="pill">SPSS</span><span class="pill">Pandas</span>
         <span class="pill">Scikit-learn</span><span class="pill">Statsmodels</span>
-        <span class="pill">Matplotlib</span><span class="pill">Excel</span>
+        <span class="pill">Matplotlib</span><span class="pill">Excel</span><span class="pill">Git</span>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-title bing">🧭 Genel Yetkinlikler</div>
+      <div class="pills">
+        <span class="pill">Raporlama</span><span class="pill">Problem Çözme</span>
+        <span class="pill">Analitik Düşünme</span><span class="pill">Teknik Yazım</span>
       </div>
     </div>
     <div class="sk-card">
@@ -600,6 +801,87 @@ h1 {
   <div class="sec-header">
     <div class="sec-badge badge-angry">🚀</div>
     <div class="sec-title">Macera Adaları <span class="sec-sub">// projeler</span></div>
+  </div>
+
+  <!-- PROJE: E-SİE V4.0 -->
+  <div class="proj-card esie">
+    <div class="proj-topbar bar-esie"></div>
+    <div class="proj-body">
+      <div class="proj-head">
+        <div class="proj-icon pi-esie">⚙️</div>
+        <div class="proj-meta">
+          <div class="proj-title">E-SİE V4.0 — Live Analytics Platform</div>
+          <div class="proj-date">Mayıs 2026 · BTK Akademi</div>
+        </div>
+        <div class="proj-badge">Full-Stack</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip sc-esie">🌐 Canlı Platform</div>
+        <div class="stat-chip sc-gray">🔗 Full-Stack Node.js</div>
+        <div class="stat-chip sc-esie">📊 Gerçek Zamanlı Analiz</div>
+      </div>
+
+      <div class="tech-row">
+        <span class="tech-tag">Node.js</span><span class="tech-tag">Express</span>
+        <span class="tech-tag">Veri Ön İşleme</span><span class="tech-tag">İstatistiksel Analiz</span>
+        <span class="tech-tag">Raporlama</span>
+      </div>
+
+      <ul class="proj-steps">
+        <li><strong>Full-Stack Platform:</strong> Veri ön işleme, istatistiksel analiz ve raporlama modüllerini tek bir uçtan uca sistemde entegre etti.</li>
+        <li><strong>Gerçek Zamanlı Görselleştirme:</strong> Kullanıcıların canlı olarak veri yükleyip analiz sonuçlarını anında görselleştirmesine imkân sağladı.</li>
+        <li><strong>Strategic Insight Engine:</strong> Karar destek amaçlı analitik çıktılar üreten bir "stratejik içgörü motoru" olarak tasarlandı.</li>
+      </ul>
+
+      <div class="proj-footer">
+        <a href="https://e-sie-v4-1.onrender.com/" class="proj-link pl-esie" target="_blank" rel="noopener noreferrer">🔗 Canlı Platformu Görüntüle</a>
+        <div class="proj-lang">
+          <div class="lang-dot" style="background:#68a063"></div>
+          Node.js / Express
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJE: PORTFOLYO SİTESİ -->
+  <div class="proj-card portfolio">
+    <div class="proj-topbar bar-portfolio"></div>
+    <div class="proj-body">
+      <div class="proj-head">
+        <div class="proj-icon pi-portfolio">🎨</div>
+        <div class="proj-meta">
+          <div class="proj-title">Interactive Portfolio Website</div>
+          <div class="proj-date">Mayıs 2026 · BTK Akademi</div>
+        </div>
+        <div class="proj-badge">Tasarım</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip sc-portfolio">🎭 Duygu Temalı UI</div>
+        <div class="stat-chip sc-gray">📱 Tam Responsive</div>
+        <div class="stat-chip sc-portfolio">✨ İnteraktif Efektler</div>
+      </div>
+
+      <div class="tech-row">
+        <span class="tech-tag">HTML</span><span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span><span class="tech-tag">Animasyon</span>
+      </div>
+
+      <ul class="proj-steps">
+        <li><strong>Duygu Temalı Tasarım:</strong> Projeleri, becerileri ve kişisel hikayeyi renkli ve karakterli bir duygu temasıyla dijital ortamda profesyonel şekilde sundu.</li>
+        <li><strong>İnteraktif Deneyim:</strong> Duygu seçimine göre değişen arka plan, canlı hava durumu entegrasyonu ve özel parçacık efektleriyle zenginleştirildi.</li>
+        <li><strong>Şu an tam olarak bu site!</strong> Kendi kendini anlatan bir proje örneği. 😄</li>
+      </ul>
+
+      <div class="proj-footer">
+        <a href="https://ayten2004.github.io/CV-web-site/" class="proj-link pl-portfolio" target="_blank" rel="noopener noreferrer">🔗 GitHub Pages'te Görüntüle</a>
+        <div class="proj-lang">
+          <div class="lang-dot" style="background:#e34c26"></div>
+          HTML / CSS / JS
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- PROJE 1: NSL-KDD -->
@@ -638,7 +920,7 @@ h1 {
       </ul>
 
       <div class="proj-footer">
-        <a href="https://github.com/ayten2004/NSL-KDD-Network-Intrusion-Detection" class="proj-link pl-cyber" target="_blank">🔗 GitHub'da Görüntüle</a>
+        <a href="https://github.com/ayten2004/NSL-KDD-Network-Intrusion-Detection" class="proj-link pl-cyber" target="_blank" rel="noopener noreferrer">🔗 GitHub'da Görüntüle</a>
         <div class="proj-lang">
           <div class="lang-dot" style="background:#f37626"></div>
           Jupyter Notebook %100
@@ -682,7 +964,7 @@ h1 {
       </ul>
 
       <div class="proj-footer">
-        <a href="https://github.com/ayten2004" class="proj-link pl-ecom" target="_blank">🔗 GitHub'da Görüntüle</a>
+        <a href="https://github.com/ayten2004" class="proj-link pl-ecom" target="_blank" rel="noopener noreferrer">🔗 GitHub'da Görüntüle</a>
         <div class="proj-lang">
           <div class="lang-dot" style="background:#f37626"></div>
           Jupyter Notebook
@@ -739,6 +1021,164 @@ h1 {
 
 <div class="rdivider"></div>
 
+<!-- ═══════════ PROFESYONEL DENEYİM ═══════════ -->
+<section class="section" id="s-exp">
+  <div class="sec-header">
+    <div class="sec-badge" style="background:radial-gradient(circle at 40% 35%,#72b8f0,#1e5fa8)">🏢</div>
+    <div class="sec-title">Uzun Yolculuklar <span class="sec-sub">// profesyonel deneyim</span></div>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card exp-tuik">
+      <div class="exp-icon ei-tuik">📊</div>
+      <div class="exp-meta">
+        <div class="exp-role">Gözlemci Öğrenci</div>
+        <div class="exp-org">Türkiye İstatistik Kurumu (TÜİK) · Ankara</div>
+        <div class="exp-date">📅 Haziran 2026 · 5 Gün</div>
+        <div class="exp-desc">Kamu istatistiği alanında gözlem ve eğitim aldı. <strong>Resmi istatistik üretim süreçlerini</strong>, veri kalitesi yönetimini ve kurumsal uygulamaları yakından öğrenme fırsatı buldu.</div>
+      </div>
+    </div>
+
+    <div class="exp-card exp-iskur">
+      <div class="exp-icon ei-iskur">💼</div>
+      <div class="exp-meta">
+        <div class="exp-role">İdari ve Ofis Görevlisi</div>
+        <div class="exp-org">İŞKUR Gençlik Programı · Konya</div>
+        <div class="exp-date">📅 Mart 2025 – Ocak 2026 · 9 Ay</div>
+        <div class="exp-desc">9 ay boyunca idari ve ofis görevlerinde bulunarak <strong>kurumsal operasyonları ve yönetimsel süreçleri</strong> yakından tanıdı, profesyonel çalışma disiplinini geliştirdi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rdivider"></div>
+
+<!-- ═══════════ SERTİFİKALAR ═══════════ -->
+<section class="section" id="s-cert">
+  <div class="sec-header">
+    <div class="sec-badge" style="background:radial-gradient(circle at 40% 35%,#ffb066,#e06800)">🎖️</div>
+    <div class="sec-title">Hafıza Rozetleri <span class="sec-sub">// sertifikalar &amp; eğitimler</span></div>
+  </div>
+
+  <div class="cert-grid">
+
+    <!-- TÜİK -->
+    <div class="cert-card cert-tuik">
+      <div class="cert-top">
+        <div class="cert-icon ci-tuik">📊</div>
+        <div>
+          <div class="cert-name">Gözlemci Öğrenci Programı</div>
+          <div class="cert-org">Türkiye İstatistik Kurumu (TÜİK)</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 22–26 Haziran 2026 · Ankara</div>
+      <div class="cert-detail">
+        Eğitim ve Araştırma Merkezi'nde <strong>Gözlemci Öğrenci</strong> olarak katılım sağlandı. İçerik: TÜİK'in tanıtımı, uygulamalı veri analizi, veri görselleştirme, etkili sunum teknikleri, yapay zekâ uygulamaları, istatistiksel metaveri ve veriye erişim imkânları.
+      </div>
+      <div class="cert-hours ch-tuik">⏱ Toplam 27 Saat (15 saati uygulamalı veri analizi)</div>
+    </div>
+
+    <!-- Üretken Yapay Zeka -->
+    <div class="cert-card cert-ai">
+      <div class="cert-top">
+        <div class="cert-icon ci-ai">🤖</div>
+        <div>
+          <div class="cert-name">Üretken Yapay Zeka Araçları Eğitimi</div>
+          <div class="cert-org">BTK Akademi</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 Mayıs 2026</div>
+      <div class="cert-detail">
+        Üretken yapay zekâ araçlarının pratik kullanımı üzerine eğitim. <strong>Proje çıktıları:</strong> E-SİE V4.0 Analytics Platform ve Interactive Portfolio Website bu eğitim kapsamında geliştirildi.
+      </div>
+      <div class="cert-hours ch-ai">⏱ 20 Saat</div>
+    </div>
+
+    <!-- Python OOP -->
+    <div class="cert-card cert-python">
+      <div class="cert-top">
+        <div class="cert-icon ci-python">🐍</div>
+        <div>
+          <div class="cert-name">Nesneye Dayalı Programlama – Python</div>
+          <div class="cert-org">MEB · Selçuklu Halk Eğitimi Merkezi</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 23.03.2026 – 12.05.2026</div>
+      <div class="cert-detail">
+        <strong>Bilişim Teknolojileri</strong> alanında Python ile Nesneye Dayalı Programlama (OOP) geliştirme ve uyum eğitimi tamamlandı.
+      </div>
+      <div class="cert-hours ch-python">⏱ 64 Saat</div>
+    </div>
+
+    <!-- C++ -->
+    <div class="cert-card cert-cpp">
+      <div class="cert-top">
+        <div class="cert-icon ci-cpp">💻</div>
+        <div>
+          <div class="cert-name">C++ Programlama Eğitimi</div>
+          <div class="cert-org">Konya Büyükşehir Belediyesi · KOMEK Akademi</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 2024</div>
+      <div class="cert-detail">
+        <strong>Bilişim Teknolojileri</strong> Meslek Edindirme Kursları kapsamında C++ programlama eğitimi başarıyla tamamlandı.
+      </div>
+      <div class="cert-hours ch-cpp">⏱ 60 Ders</div>
+    </div>
+
+    <!-- Diksiyon -->
+    <div class="cert-card cert-diksiyon">
+      <div class="cert-top">
+        <div class="cert-icon ci-diksiyon">🎤</div>
+        <div>
+          <div class="cert-name">Diksiyon</div>
+          <div class="cert-org">MEB · Konya Gençlik ve Spor İl Müdürlüğü · Meram HEM</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 20.04.2024 – 25.05.2024</div>
+      <div class="cert-detail">
+        <strong>Kişisel Gelişim ve Eğitim</strong> alanında diksiyon programı; etkili ve doğru konuşma teknikleri üzerine tamamlandı — sunum ve iletişim becerilerini destekliyor.
+      </div>
+      <div class="cert-hours ch-diksiyon">⏱ 40 Saat</div>
+    </div>
+
+    <!-- Excel -->
+    <div class="cert-card cert-excel">
+      <div class="cert-top">
+        <div class="cert-icon ci-excel">📗</div>
+        <div>
+          <div class="cert-name">Microsoft Excel Temelleri</div>
+          <div class="cert-org">BTK Akademi · Bilgi Teknolojileri ve İletişim Kurumu</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 06.02.2025</div>
+      <div class="cert-detail">
+        Çevrim içi eğitim; veri düzenleme, formüller ve temel elektronik tablo yönetimi becerileri kazanıldı.
+      </div>
+      <div class="cert-hours ch-excel">⏱ Katılım Sertifikası</div>
+    </div>
+
+    <!-- Veri Odaklı Sosyal Çözüm Kampı -->
+    <div class="cert-card cert-camp">
+      <div class="cert-top">
+        <div class="cert-icon ci-camp">🌱</div>
+        <div>
+          <div class="cert-name">Veri Odaklı Sosyal Çözüm Kampı</div>
+          <div class="cert-org">Necmettin Erbakan Üniversitesi</div>
+        </div>
+      </div>
+      <div class="cert-date">📅 Aralık 2023</div>
+      <div class="cert-detail">
+        Veriyi sosyal fayda ve toplumsal çözümler üretmek için kullanmaya odaklanan katılımcı kamp programı.
+      </div>
+      <div class="cert-hours ch-camp">⏱ Katılım Sertifikası</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="rdivider"></div>
+
 <!-- ═══════════ GÖNÜLLÜLÜK ═══════════ -->
 <section class="section" id="s5">
   <div class="sec-header">
@@ -767,7 +1207,7 @@ h1 {
 <script>
 /* ── ORBS ── */
 const orbsEl = document.getElementById('orbs');
-const emoColors = ['#FFD700','#4A90D9','#E84545','#5DBB63','#9B59B6','#FF9EBC'];
+const emoColors = ['#FFD700','#4A90D9','#E84545','#5DBB63','#9B59B6','#FF9EBC','#FF8C2E','#2ED9A8','#FF6FA5','#8B93A6'];
 for(let i=0;i<20;i++){
   const o=document.createElement('div');
   o.className='orb';
@@ -783,27 +1223,136 @@ const emoData = {
   angry:  { color:'#E84545', glow:'rgba(232,69,69,0.22)',    soft:'rgba(232,69,69,0.07)',    bgBase:'#1a0404', bg:'#1e0505' },
   disgust:{ color:'#5DBB63', glow:'rgba(93,187,99,0.22)',    soft:'rgba(93,187,99,0.07)',    bgBase:'#040e05', bg:'#04100a' },
   fear:   { color:'#9B59B6', glow:'rgba(155,89,182,0.22)',   soft:'rgba(155,89,182,0.07)',   bgBase:'#0a0414', bg:'#0c0518' },
+  anxiety:   { color:'#FF8C2E', glow:'rgba(255,140,46,0.22)',   soft:'rgba(255,140,46,0.07)',   bgBase:'#1a0d02', bg:'#1e0f02' },
+  envy:      { color:'#2ED9A8', glow:'rgba(46,217,168,0.22)',   soft:'rgba(46,217,168,0.07)',   bgBase:'#02140f', bg:'#031712' },
+  embarrass: { color:'#FF6FA5', glow:'rgba(255,111,165,0.22)',  soft:'rgba(255,111,165,0.07)',  bgBase:'#1a0510', bg:'#1e0613' },
+  ennui:     { color:'#8B93A6', glow:'rgba(139,147,166,0.22)',  soft:'rgba(139,147,166,0.07)',  bgBase:'#0e1016', bg:'#111319' },
 };
+
+/* ── MOOD MESSAGES ── */
+const moodData = {
+  joy:       { icon:'☀️', fx:'confetti', fallback:'Bugün kendine güzel bir şey söyle: az önce harika bir şey başardın — buraya kadar geldin!' },
+  sad:       { icon:'🌧️', fx:'rain',      text:'Ara sıra yavaşlamak da bir başarı biçimidir. Bugün kendine biraz nazik davran.' },
+  angry:     { icon:'🔥', fx:'shake',     text:'Bu ateş, aslında umursadığının bir işareti. Onu bir yakıta çevirebilirsin.' },
+  disgust:   { icon:'🙄', fx:'eyeroll',   text:'Standartların yüksek — bu da seni titiz ve güvenilir kılan şeylerden biri.' },
+  fear:      { icon:'⚡', fx:'jitter',    text:'Korku bazen dikkatli olduğunun kanıtıdır. Bir adım at, geri kalanı yürür.' },
+  anxiety:   { icon:'💭', fx:'worry',     text:'Kafanda dönen o liste... hepsini birden çözmek zorunda değilsin, sadece bir tanesini seç.' },
+  envy:      { icon:'✨', fx:'sparkle',   text:'Başkasının parıltısı senin ışığını söndürmez, sadece hangi yöne bakman gerektiğini gösterir.' },
+  embarrass: { icon:'🙈', fx:'blush',     text:'O an sandığından çok daha küçük ve çok daha çabuk unutuluyor. Sen devam ediyorsun.' },
+  ennui:     { icon:'😮\u200d💨', fx:'gray', text:'Bazen hiçbir şey yapmamak da bir çeşit dinlenmedir. Bugün öyle bir gün olabilir.' },
+};
+
+let fxInterval = null;
+function clearFx(){
+  if(fxInterval){ clearInterval(fxInterval); fxInterval=null; }
+  document.body.classList.remove('fx-grayscale');
+}
+
+function spawnParticle(html, animName, duration, leftPct, extraStyle=''){
+  const layer = document.getElementById('fx-layer');
+  const el = document.createElement('div');
+  el.className='fx-item';
+  el.innerHTML = html;
+  el.style.cssText = `left:${leftPct}%; top:0; font-size:${1+Math.random()*1.2}rem; animation:${animName} ${duration}s ease-in forwards; ${extraStyle}`;
+  layer.appendChild(el);
+  setTimeout(()=>el.remove(), duration*1000+200);
+}
+
+function runFx(type){
+  clearFx();
+  const layer = document.getElementById('fx-layer');
+  if(type==='confetti'){
+    fxInterval = setInterval(()=>{
+      const emojis=['🎉','✨','🎊','⭐'];
+      spawnParticle(emojis[Math.floor(Math.random()*emojis.length)],'fx-confetti-fall',(Math.random()*2+2.5),Math.random()*100);
+    },180);
+  } else if(type==='rain'){
+    fxInterval = setInterval(()=>{
+      spawnParticle('💧','fx-rain-fall',(Math.random()*1.5+2),Math.random()*100,'font-size:.9rem;filter:hue-rotate(0deg);');
+    },140);
+  } else if(type==='shake'){
+    document.body.classList.add('fx-shaking');
+    setTimeout(()=>document.body.classList.remove('fx-shaking'),400);
+    fxInterval = setInterval(()=>{
+      spawnParticle('🔥','fx-rise-fade',(Math.random()*1.5+1.8),Math.random()*100);
+    },220);
+  } else if(type==='eyeroll'){
+    fxInterval = setInterval(()=>{
+      spawnParticle('🙄','fx-rise-fade',(Math.random()*1.5+2),Math.random()*100);
+    },400);
+  } else if(type==='jitter'){
+    fxInterval = setInterval(()=>{
+      spawnParticle('⚡','fx-drift-side',(Math.random()*1.2+1.5),Math.random()*60);
+    },300);
+  } else if(type==='worry'){
+    fxInterval = setInterval(()=>{
+      spawnParticle('❓','fx-rise-fade',(Math.random()*1.2+1.5),Math.random()*100);
+    },160);
+  } else if(type==='sparkle'){
+    fxInterval = setInterval(()=>{
+      spawnParticle('✨','fx-drift-side',(Math.random()*2+2),Math.random()*60);
+    },220);
+  } else if(type==='blush'){
+    fxInterval = setInterval(()=>{
+      spawnParticle('💗','fx-rise-fade',(Math.random()*1.8+2),Math.random()*100);
+    },260);
+  } else if(type==='gray'){
+    document.body.classList.add('fx-grayscale');
+  }
+}
+
+/* Weather for Joy — real data, no key needed */
+let weatherText = null;
+async function fetchWeather(){
+  if(weatherText) return weatherText;
+  try{
+    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.1759&longitude=33.2287&current_weather=true');
+    const data = await res.json();
+    const t = Math.round(data.current_weather.temperature);
+    const code = data.current_weather.weathercode;
+    const desc = code===0?'açık ve güneşli':code<=3?'parçalı bulutlu':code<=48?'sisli':code<=67?'yağmurlu':code<=77?'karlı':'değişken';
+    weatherText = `Karaman'da şu an ${t}°C ve hava ${desc}. ${moodData.joy.fallback}`;
+  }catch(e){
+    weatherText = moodData.joy.fallback;
+  }
+  return weatherText;
+}
 
 function setEmo(btn){
   document.querySelectorAll('.emo-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  const e = emoData[btn.dataset.emo];
+  const key = btn.dataset.emo;
+  const e = emoData[key];
   const r = document.documentElement;
   r.style.setProperty('--emotion', e.color);
   r.style.setProperty('--emotion-glow', e.glow);
   r.style.setProperty('--emotion-soft', e.soft);
   document.body.style.background = e.bg;
-  // update avatar glow
   document.getElementById('avatar-inner').style.color = e.color;
   document.getElementById('avatar-inner').style.textShadow = `0 0 28px ${e.glow}`;
-  // update h1 gradient
   const h1 = document.getElementById('hero-h1');
   h1.style.background = `linear-gradient(135deg, ${e.color} 0%, #fff 60%, #a8d8ff 100%)`;
   h1.style.webkitBackgroundClip = 'text';
   h1.style.backgroundClip = 'text';
   h1.style.webkitTextFillColor = 'transparent';
+
+  const mood = moodData[key];
+  document.getElementById('mood-icon').textContent = mood.icon;
+  const moodTextEl = document.getElementById('mood-text');
+  if(key==='joy'){
+    moodTextEl.textContent = 'Hava durumu getiriliyor...';
+    fetchWeather().then(txt=>{ moodTextEl.textContent = txt; });
+  } else {
+    moodTextEl.textContent = mood.text;
+  }
+  runFx(mood.fx);
 }
+
+/* Load joy weather on first paint */
+window.addEventListener('DOMContentLoaded', ()=>{
+  fetchWeather().then(txt=>{ document.getElementById('mood-text').textContent = txt; });
+  runFx('confetti');
+});
 
 /* ── SCROLL REVEAL ── */
 const obs = new IntersectionObserver(entries=>{
